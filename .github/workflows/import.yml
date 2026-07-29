@@ -1,0 +1,45 @@
+name: import
+
+# Merge → imported into the Hou.la catalogue. On push to main, validate then
+# POST the changed bundles to the ingestion endpoint (which re-validates,
+# enforces transparency, uploads art to R2, and upserts gift_bundle).
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'bundles/**'
+
+concurrency:
+  group: import-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Validate (schema + safety)
+        run: npm run validate
+      - name: Compute changed bundle slugs
+        id: changed
+        run: |
+          BEFORE="${{ github.event.before }}"
+          if [ -z "$BEFORE" ] || ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            SLUGS=$(ls bundles 2>/dev/null | tr '\n' ' ')
+          else
+            SLUGS=$(git diff --name-only "$BEFORE" "${{ github.sha }}" -- bundles/ \
+              | awk -F/ '/^bundles\//{print $2}' | sort -u | tr '\n' ' ')
+          fi
+          echo "slugs=$SLUGS" >> "$GITHUB_OUTPUT"
+      - name: Import to Hou.la
+        if: steps.changed.outputs.slugs != ''
+        env:
+          HOULA_IMPORT_URL: ${{ secrets.HOULA_IMPORT_URL }}
+          BUNDLE_IMPORT_TOKEN: ${{ secrets.BUNDLE_IMPORT_TOKEN }}
+        run: node scripts/import.js ${{ steps.changed.outputs.slugs }}

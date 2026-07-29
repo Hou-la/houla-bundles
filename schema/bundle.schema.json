@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/houla-community/bundles/schema/bundle.schema.json",
+  "title": "Hou.la interactive gift bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["slug", "name", "slots"],
+  "properties": {
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{1,60}$",
+      "description": "Unique bundle slug (matches its folder name)."
+    },
+    "name": { "type": "string", "minLength": 2, "maxLength": 60 },
+    "theme": {
+      "type": "string",
+      "enum": ["gaming", "asmr", "studio-fx", "irl", "music", "other"]
+    },
+    "game": { "type": "string", "maxLength": 40 },
+    "author": { "type": "string", "maxLength": 60 },
+    "description": { "type": "string", "maxLength": 300 },
+    "slots": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["slug", "name", "image"],
+        "properties": {
+          "slug": {
+            "type": "string",
+            "pattern": "^ix_slot_(0[1-9]|[12][0-9]|30)$",
+            "description": "Reserved Hou.la slot (fixed price). ix_slot_01..30."
+          },
+          "name": { "type": "string", "minLength": 1, "maxLength": 40 },
+          "label": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "Short human-readable summary of what the gift DOES (e.g. 'Gives the player a diamond'), shown in the Studio picker tooltip + to viewers. Author-written; English by convention — the platform does not translate it. Distinct from effect.command (the executable, connector-side)."
+          },
+          "image": {
+            "type": "string",
+            "pattern": "^assets/[A-Za-z0-9._-]+\\.(png|webp)$",
+            "description": "Original artwork under this bundle's assets/ folder."
+          },
+          "effect": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["type"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["rcon", "obs", "http", "custom"],
+                "description": "shell is intentionally NOT allowed in community bundles."
+              },
+              "command": { "type": "string", "maxLength": 300 },
+              "template": { "type": "string", "maxLength": 300 },
+              "cooldownMs": { "type": "integer", "minimum": 0, "maximum": 600000 }
+            }
+          }
+        }
+      }
+    }
+  }
+}

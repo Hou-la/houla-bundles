@@ -1,0 +1,13 @@
+{
+  "name": "houla-bundles",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Community art packs for Hou.la interactive live gifts",
+  "scripts": {
+    "validate": "node scripts/validate.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "ajv": "^8.17.1"
+  }
+}
