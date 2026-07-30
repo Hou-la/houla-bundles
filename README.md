@@ -1,5 +1,7 @@
 # Hou.la — Interactive Gift Bundles
 
+📦 **`github.com/Hou-la/houla-bundles`** — submit or customize a pack via a Pull Request (see [CONTRIBUTING](CONTRIBUTING.md)).
+
 Community **art packs** for [Hou.la](https://hou.la) **interactive live gifts**: when a
 viewer sends an interactive gift during a live, it triggers a **real-world effect**
 on the creator's setup (a Minecraft event via RCON, an OBS overlay, lights, an ASMR

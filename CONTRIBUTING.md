@@ -48,10 +48,15 @@ the creator wires their own credentials locally in the connector, never here.
 Before opening a PR, dry-run your effects with the connector's sandbox:
 
 ```js
-const { HoulaConnector } = require('@houla/live-connector')
-const conn = new HoulaConnector({ key: 'hle_...' })      // or offline mode
-conn.loadPreset('./bundles/<slug>/bundle.json')
-conn.simulateGift({ slug: 'ix_slot_09' })                // fires the effect locally, no live/coins
+const { HoulaLiveConnection, loadPreset, applyPreset } = require('@houla/live-connector')
+
+const conn = new HoulaLiveConnection({ token: 'sandbox' }) // no live/coins/connection needed
+const preset = loadPreset('./bundles/<slug>/bundle.json')
+applyPreset(conn, preset, {
+  vars: { player: 'Steve' },
+  onCommand: (cmd, gift) => console.log(gift.gift.slug, '→', cmd),
+})
+conn.simulateGift({ slug: 'ix_slot_09' })                  // fires the effect locally
 ```
 
 ## 6. Licensing

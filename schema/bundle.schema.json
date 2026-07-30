@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://github.com/houla-community/bundles/schema/bundle.schema.json",
+  "$id": "https://github.com/Hou-la/houla-bundles/schema/bundle.schema.json",
   "title": "Hou.la interactive gift bundle",
   "type": "object",
   "additionalProperties": false,
