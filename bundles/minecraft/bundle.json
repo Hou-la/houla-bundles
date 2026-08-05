@@ -1,10 +1,11 @@
 {
   "slug": "minecraft",
-  "name": "Minecraft — Survie",
+  "name": "Survie",
   "theme": "gaming",
   "game": "minecraft",
   "author": "Hou.la",
-  "description": "Pack interactif Minecraft : les viewers récompensent (objets, buffs, élytra, totem) ou piègent (mobs, nuit, orage, dragon) le streamer en direct via RCON. Effets classés par impact = prix croissant. Majoritairement non destructifs — TNT et dragon (rares) peuvent abîmer le monde.",
+  "description": "Pack interactif pour serveurs Minecraft : les viewers récompensent (objets, buffs, élytra, totem) ou piègent (mobs, nuit, orage, dragon) le streamer en direct via RCON. Effets classés par impact = prix croissant. Majoritairement non destructifs — TNT et dragon (rares) peuvent abîmer le monde.",
+  "notice": "Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft.",
   "slots": [
     {
       "slug": "ix_slot_01",

@@ -8,8 +8,31 @@ high-quality. CI enforces the mechanical ones; a maintainer reviews the rest.
 - Submit **only art you own or that is yours to license**. **No** ripped game textures, no
   logos/skins/characters from other games or brands, no AI output trained to mimic a specific
   franchise, no stock you don't have rights to.
-- Formats: **PNG or WebP**, square, transparent background, ~512×512, < 300 KB each.
 - Put files under your bundle's `assets/` and reference them as `assets/<file>.png` in `bundle.json`.
+
+**CI checks all of this** (`npm run validate`) — these are not suggestions:
+
+| Rule | Value |
+|---|---|
+| Format | **PNG or WebP** — the actual bytes, not just the extension |
+| Shape | **square** |
+| Size | between **128×128** and **512×512** |
+| Weight | **< 300 KB** per file |
+
+Transparent background, please. If your art isn't square, pad it rather than squashing it:
+`magick in.png -background none -gravity center -extent 512x512 out.png`.
+
+**Targeting someone else's game?** Then `bundle.json` must set `notice` — a one-line disclaimer
+that your pack is not affiliated with that publisher. CI rejects any bundle that sets `game`
+without a `notice`. Example from the reference bundle:
+
+```json
+"game": "minecraft",
+"notice": "Not an official Minecraft product. Not approved by or associated with Mojang or Microsoft."
+```
+
+Don't put the trademark first in your bundle `name` either — name the pack (`"Survie"`), and let
+`game` and `description` say what it is compatible with.
 
 ## 2. Effects — NON-DESTRUCTIVE only
 
@@ -61,15 +84,21 @@ conn.simulateGift({ slug: 'ix_slot_09' })                  // fires the effect l
 
 ## 6. Licensing
 
-By opening a PR you confirm the art is yours to license and you grant **Hou.la a non-exclusive,
-worldwide license to display it as interactive-gift artwork** on the platform and its clients.
-You keep your copyright. Tooling/manifests in this repo are MIT.
+**You keep the copyright on your artwork.** Opening a PR grants Hou.la a non-exclusive,
+worldwide licence to display it as interactive-gift artwork on the platform and its clients —
+and you can ask for it to be removed later. Tooling and manifests in this repo are
+[MIT](LICENSE).
+
+The full terms, including what happens on withdrawal, are in **[LICENSE-ART.md](LICENSE-ART.md)**.
+It's short. Read it before you submit — by opening a PR you're agreeing to it.
 
 ## Checklist
 
 - [ ] `npm ci && npm run validate` passes locally
-- [ ] Art is original PNG/WebP under `assets/`, referenced correctly
+- [ ] Art is original, square PNG/WebP (128–512 px, < 300 KB) under `assets/`, referenced correctly
+- [ ] `notice` is set if the pack targets a third-party game, and its trademark isn't the `name`
 - [ ] Effects use `{player}`-style placeholders, no forbidden commands, `type` ≠ `shell`
 - [ ] Slots are `ix_slot_01..30`, each used at most once
 - [ ] No secrets / personal data anywhere
 - [ ] A short `README.md` in your bundle folder with credits
+- [ ] You've read [LICENSE-ART.md](LICENSE-ART.md) and the art is yours to license

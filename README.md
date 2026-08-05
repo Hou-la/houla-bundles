@@ -52,6 +52,14 @@ non-destructive effects, reserved slots).
 
 ## License
 
-Manifests + this tooling are MIT. **Artwork you submit stays under YOUR copyright**; by
-opening a PR you grant Hou.la a license to display it as interactive-gift art on the platform
-(see CONTRIBUTING.md → *Licensing*).
+Two regimes, on purpose:
+
+- **Tooling + manifests** (`scripts/`, `schema/`, every `bundle.json`) — [MIT](LICENSE). Reuse them.
+- **Artwork** (`bundles/*/assets/`) — **stays under YOUR copyright.** Opening a PR grants Hou.la a
+  non-exclusive licence to display it as interactive-gift art on the platform, nothing more, and
+  you can ask for it back. The full terms are in **[LICENSE-ART.md](LICENSE-ART.md)** — it is short
+  and written to be read.
+
+Packs targeting a third-party game must carry a `notice` disclaiming any affiliation with its
+publisher; CI enforces it. The reference bundle is *Survie*, for Minecraft servers: **not an
+official Minecraft product, not approved by or associated with Mojang or Microsoft.**
