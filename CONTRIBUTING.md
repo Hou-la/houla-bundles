@@ -98,7 +98,8 @@ It's short. Read it before you submit — by opening a PR you're agreeing to it.
 - [ ] Art is original, square PNG/WebP (128–512 px, < 300 KB) under `assets/`, referenced correctly
 - [ ] `notice` is set if the pack targets a third-party game, and its trademark isn't the `name`
 - [ ] Effects use `{player}`-style placeholders, no forbidden commands, `type` ≠ `shell`
-- [ ] Slots are `ix_slot_01..30`, each used at most once
+- [ ] Slots are `ix_slot_01..99`, each used at most once (two digits: `ix_slot_100` is rejected)
+- [ ] `coinCost`, when set, is one of the allowed tiers (see `schema/bundle.schema.json`) — several slots may share the same price
 - [ ] No secrets / personal data anywhere
 - [ ] A short `README.md` in your bundle folder with credits
 - [ ] You've read [LICENSE-ART.md](LICENSE-ART.md) and the art is yours to license

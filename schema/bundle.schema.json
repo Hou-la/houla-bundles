@@ -27,7 +27,7 @@
     "slots": {
       "type": "array",
       "minItems": 1,
-      "maxItems": 30,
+      "maxItems": 99,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -35,8 +35,13 @@
         "properties": {
           "slug": {
             "type": "string",
-            "pattern": "^ix_slot_(0[1-9]|[12][0-9]|30)$",
-            "description": "Reserved Hou.la slot (fixed price). ix_slot_01..30."
+            "pattern": "^ix_slot_(0[1-9]|[1-9][0-9])$",
+            "description": "Reserved Hou.la slot. ix_slot_01..99. A slot is a PLACE, not a price: since 2026-09-08 the price is declared per slot via coinCost, so several distinct gifts may share the same price. Two digits only — ix_slot_100 is rejected."
+          },
+          "coinCost": {
+            "type": "integer",
+            "enum": [5, 10, 15, 20, 30, 45, 60, 80, 100, 125, 155, 190, 230, 280, 340, 410, 490, 580, 680, 790, 900, 1010, 1120, 1230, 1340, 1440, 1530, 1600, 1660, 1700],
+            "description": "Price in coins paid by the viewer. Closed ladder, NOT free-form: the amount converts 1:1 into stars and then into a real payable liability. Omit to keep the reserved slot's historical price."
           },
           "name": { "type": "string", "minLength": 1, "maxLength": 40 },
           "label": {
