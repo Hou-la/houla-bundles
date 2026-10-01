@@ -1,5 +1,18 @@
 # Hou.la — Interactive Gift Bundles
 
+> **Building a Hou.la Connect pack or a game plugin? This repository is not the place.**
+> The developer documentation lives at **https://hou.la/apps/houla-connect/developpeurs**
+> (French and English): what Connect can drive (game plugins in `mod`, `rcon`, `ws` or `http`
+> mode, OBS, keyboard, gamepad, HTTP, WebSocket, MQTT, OSC…), how to write a game plugin, the
+> JSON format of a pack (schema 3), the security rules, how to pair a companion program over a
+> local HTTP API, and a downloadable kit (verified example packs and plugins, an AI guide, the
+> pack banner template). Added 2026-10-01, after a creator's AI read this README and concluded
+> there was no documentation for Connect plugins.
+>
+> This repository only covers the **art bundles** described below (`bundle.json` + artwork),
+> imported into the Hou.la gift catalogue. A Connect pack is a different file, written in the
+> Connect Lab and published from the app.
+
 📦 **`github.com/Hou-la/houla-bundles`** — submit or customize a pack via a Pull Request (see [CONTRIBUTING](CONTRIBUTING.md)).
 
 Community **art packs** for [Hou.la](https://hou.la) **interactive live gifts**: when a

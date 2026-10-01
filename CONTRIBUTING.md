@@ -53,12 +53,18 @@ override or disable any of them.
 
 ## 3. Reserved slots
 
-Interactive gifts map onto **Hou.la's reserved, fixed-price slots** — you don't invent prices.
-Valid slot slugs are `ix_slot_01` … `ix_slot_30` (cheap → premium). Each slot may appear **once**
-per bundle. A bundle fills a subset; you don't have to use all 30.
+~~Interactive gifts map onto **Hou.la's reserved, fixed-price slots** — you don't invent prices.
+Valid slot slugs are `ix_slot_01` … `ix_slot_30` (cheap → premium). The price of a slot is set
+by Hou.la (see the price ladder in the platform docs).~~ **Outdated** (since the
+schema change of 2026-09-08, noticed 2026-10-01): a slot is a **place**, not a price. Valid slot
+slugs are `ix_slot_01` … `ix_slot_99` (two digits), and each slot may declare its own `coinCost`,
+picked from the closed list in `schema/bundle.schema.json` (several slots may share a price).
+Check: `grep -n "ix_slot\|enum" schema/bundle.schema.json`. Each slot may appear **once** per
+bundle. A bundle fills a subset; you don't have to use them all.
 
-The price of a slot is set by Hou.la (see the price ladder in the platform docs). Higher slots
-trigger the full-screen "divine" moment on viewers; cheap ones a compact pill.
+Higher slots trigger the full-screen "divine" moment on viewers; cheap ones a compact pill.
+
+For Hou.la Connect packs (a different format), see https://hou.la/apps/houla-connect/developpeurs.
 
 ## 4. No confidential / personal data
 
